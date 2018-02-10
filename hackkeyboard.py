@@ -215,7 +215,7 @@ def engTypeToKore(src):
 			if (nJong != -1):
 				res += JONG_DATA[nJong]
 
-
+		i++
 
 	return res; 
 
