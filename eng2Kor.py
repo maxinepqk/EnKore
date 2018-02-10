@@ -19,7 +19,7 @@ def engTypeToKore(src):
     nJong = -1
     for i in range(len(src)):
         ch = src[i] 
-    p = ENG_KEY.index("ch")
+    p = ENG_KEY.index(ch)
     if (p == -1): 
         if (nCho != -1):
             if (nJung != -1):
