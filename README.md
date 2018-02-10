@@ -1,7 +1,7 @@
 EnKore
 ======
 
-EnKore is a multilongual keyboard, supporting automatic keboard management when typing in English and Korean.
+EnKore is a multilingual keyboard, supporting automatic keboard management when typing in English and Korean.
 
 
 Instruction
