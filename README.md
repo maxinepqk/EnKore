@@ -7,18 +7,18 @@ EnKore is a multilongual keyboard, supporting automatic keboard management when 
 Instruction
 -----------
 
-* Everything in PYTHON3! HEHE
-* Before runnt ing 
-** In the console:
-** $ export PYTHONIOENCODING=utf8 
-
+** Everything in PYTHON3! HEHE**
+* Before running, in the console:
+```
+$ export PYTHONIOENCODING=utf8 
+```
 
 Credit
 ------
 * Controlling Keyboards:
-**  http://pynput.readthedocs.io/en/latest/keyboard.html#controlling-the-keyboardxport PYTHONIOENCODING = utf8
+ http://pynput.readthedocs.io/en/latest/keyboard.html#controlling-the-keyboardxport PYTHONIOENCODING = utf8
 * Converting Korean <-> English
-**  http://www.theyt.net/wiki/한영타변환기
+ http://www.theyt.net/wiki/한영타변환기
 * Dictionary
-**  https://glosbe.com/
+ https://glosbe.com/
 
