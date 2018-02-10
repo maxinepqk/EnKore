@@ -24,6 +24,7 @@ import urllib
 import urllib.parse
 import urllib.request
 import json
+import codecs
 
 locale.setlocale(locale.LC_ALL, 'ko_KR.utf-8')
 
@@ -62,8 +63,7 @@ def request_glosbe(src_lang, dst_lang, phrase) :
       }
   query_url = urllib.parse.urlencode(query_params)
   response = urllib.request.urlopen(glosbe_url + '?' + query_url)
-  return response.read()
-
+  return response
 
 def line_with_phrase(tuc_item) :
   return tuc_item['phrase']['text']
@@ -79,8 +79,8 @@ def line_with_phrase_and_meaning(tuc_item) :
   return line
 
 def extract_glosbe_response(js) :
-  if (js['result'] != 'ok') :
-    return None
+  print(js)
+  if (js['result'] != 'ok') : return None
   # lines = [line_with_phrase_and_meaning(i) for i in js['tuc'] if i.get('phrase')]
   lines = [line_with_phrase(i) for i in js['tuc'] if i.get('phrase')]
   if (len(lines) == 0) :
@@ -89,16 +89,16 @@ def extract_glosbe_response(js) :
 
 def dic(src_lang, dst_lang, phrase) :
   response = request_glosbe(src_lang, dst_lang, phrase)
-  str_response = response.readall().decode('utf-8')
-  js = jsons.loads(str_response)
-  lines = extract_glosbe_response(js)
+  str_response = response.read().decode('utf-8')
+  js = json.loads(str_response)
+  #js = json.load((response).decode('utf-8'))
+  lines = extract_glosbe_response(json.dumps(js))
   if (lines == None) :
     return False
   print (phrase + '\n========\n' + lines)
   return True
 
 def converter(phrase) :
-
   # if (len(sys.argv) < 4) :
     # print(usage)
     # return 1
