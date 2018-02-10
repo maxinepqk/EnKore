@@ -195,7 +195,31 @@ def engTypeToKore(src):
 					res += makeHangul(nCho, nJung, nJong)
 					nCho = -1
 				else:
-					
+					res += JUNG_DATA[nJung]
+				nJung = -1
+				res += KOR_KEY[p]
+
+
+
+
+
+	if (nCho != -1):
+		if (nJung != -1):
+			res += makeHangul(nCho, nJung, nJong)
+		else:
+			res += CHO_DATA[nCho]
+	else:
+		if (nJung != -1):
+			res += JUNG_DATA[nJung]
+		else:
+			if (nJong != -1):
+				res += JONG_DATA[nJong]
+
+
+
+	return res; 
+
+
 
 
 
