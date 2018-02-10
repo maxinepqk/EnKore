@@ -8,8 +8,6 @@ JONG_DATA = "ㄱㄲㄳㄴㄵㄶㄷㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅄㅅㅆㅇㅈ�
 def doConvert():
     return
 
-
-
 def engTypeToKor(src):
     res = "";
     if (len(src) == 0):
@@ -19,9 +17,9 @@ def engTypeToKor(src):
     nJung = -1
     nJong = -1
     for i in range(len(src)):
-        ch = src[i] 
+        ch = src[i]
         p = ENG_KEY.index(ch)
-        if (p == -1): 
+        if (p == -1):
             if (nCho != -1):
                 if (nJung != -1):
                     res += makeHangul(nCho, nJung, nJong)
@@ -51,7 +49,7 @@ def engTypeToKor(src):
                             nCho = CHO_DATA.index(KOR_KEY[p])
                             nJung = -1
                     elif (nJong == 0 and p == 9):
-                        nJong = 2   
+                        nJong = 2
                     elif (nJong == 3 and p == 12):
                         nJong = 4
                     elif (nJong == 3 and p == 18):
@@ -123,7 +121,7 @@ def engTypeToKor(src):
                 else:
                     res += CHO_DATA[nCho]
                     nCho = CHO_DATA.index(KOR_KEY[p])
-            
+
 
         else:
             if (nJong != -1):
@@ -218,14 +216,14 @@ def engTypeToKor(src):
 
         i+=1
 
-    return res; 
+    return res;
 
 
 
 def makeHangul(nCho, nJung, nJong):
     s = ''.join(map(unichr, [nCho, nJung, nJong]))
     return s
-    
+
 
 def korTypeToEng(src):
     res = ""
@@ -281,8 +279,8 @@ def korTypeToEng(src):
             else :
                 arrKeyIndex[1] = KOR_KEY.find(JUNG_DATA[arrKeyIndex[1]])
                 arrKeyIndex[2] = -1
-            
-        
+
+
         if (arrKeyIndex[3] != -1) :
             if (arrKeyIndex[3] == 2) :                  # ㄳ
                 arrKeyIndex[3] = 0
@@ -320,14 +318,8 @@ def korTypeToEng(src):
             else :
                 arrKeyIndex[3] = KOR_KEY.find(JONG_DATA[arrKeyIndex[3]])
                 arrKeyIndex[4] = -1
-            
-        
 
         for j in range(0, 5) :
             if (arrKeyIndex[j] != -1):
                 res += ENG_KEY[arrKeyIndex[j]]
-        
-    
-
     return res
-

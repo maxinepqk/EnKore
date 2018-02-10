@@ -2,9 +2,25 @@ from pynput.keyboard import Key, Controller
 from pynput import keyboard
 import string
 from glosbe_mod import converter
+from engkor_combined import *
 
 my_keyboard = Controller()
 word = []
+
+def switch_input_source():
+    my_keyboard.press(Key.ctrl)
+    my_keyboard.press(Key.alt)
+    my_keyboard.press(Key.up)
+    my_keyboard.release(Key.up)
+    my_keyboard.release(Key.ctrl)
+    my_keyboard.release(Key.alt)
+
+def check_word(actual_word):
+    (eng_valid, _) = check_dictionary(actual_word)
+    print(eng_valid, kor_valid)
+    if (!(eng_valid)) korWord = engTypeToKor(actual_word)
+    (_, kor_valid) = check_dictionary(korWord)
+    if (kor_valid) switch_input_source
 
 def on_press(key):
     try:
@@ -18,9 +34,11 @@ def on_release(key):
     if (key == keyboard.Key.space):
         actual_word = ''.join(word)
         print(actual_word)
-        (eng_valid, kor_valid) = converter(actual_word)
+        check_word(actual_word)
+
         word.clear()
-        print(eng_valid, kor_valid)
+        switch_input_source()
+
     if key == keyboard.Key.esc:
         # Stop listener
         return False
