@@ -29,3 +29,6 @@ Credit
 * Dictionary
  https://glosbe.com/
 
+Project
+------
+Tartanhacks 2018
