@@ -3,6 +3,7 @@ from pynput import keyboard
 import string
 from glosbe_mod import check_dictionary
 from engkor_combined import *
+import time
 
 my_keyboard = Controller()
 word = []
@@ -14,25 +15,37 @@ def switch_input_source():
     my_keyboard.release(Key.up)
     my_keyboard.release(Key.ctrl)
     my_keyboard.release(Key.alt)
+    time.sleep(.1)
 
 def delete_word(actual_word):
-    for i in range(0, len(actual_word)+1):
+    my_keyboard.press(Key.left)
+    my_keyboard.release(Key.left)
+    for i in range(0, len(actual_word)):
         my_keyboard.press(Key.backspace)
         my_keyboard.release(Key.backspace)
+    time.sleep(.1)
 
 def check_word(actual_word):
+    print(actual_word)
     (eng_valid, _) = check_dictionary(actual_word)
     #print(eng_valid, kor_valid)
     if (eng_valid == False):
-        #korWord = engTypeToKor(actual_word)
-        korWord = "여보"
+        korWord = engTypeToKor(actual_word)
         (_, kor_valid) = check_dictionary(korWord)
         if (kor_valid):
             print(actual_word)
             delete_word(actual_word) #deletes english word
             switch_input_source() #switches to korean keyboard
             my_keyboard.type(actual_word) #types out sequence
+            time.sleep(.1)
+            my_keyboard.press(Key.right)
+            my_keyboard.release(Key.right)
+            time.sleep(.1)
             switch_input_source() #switches back
+    time.sleep(.1)
+    word.clear()
+    actual_word = ""
+    print("cleared")
 
 def on_press(key):
     try:
@@ -47,9 +60,10 @@ def on_release(key):
         actual_word = ''.join(word)
         #print(actual_word)
         check_word(actual_word)
-        print("cleared")
+    if (key == keyboard.Key.right):
         word.clear()
-
+        actual_word= ""
+        print("CLEAREDDDDD")
     if key == keyboard.Key.esc:
         # Stop listener
         return False
