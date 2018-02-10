@@ -208,8 +208,7 @@ def engTypeToKor(src):
                 res += KOR_KEY[p]
         i+=1
         count += 1
-        print (nCho,nJung, nJong)
-        print(count, ":" , res)
+       
 
 
 
@@ -233,40 +232,6 @@ def engTypeToKor(src):
 
 
 def makeHangul(nCho, nJung, nJong):
-    print(nCho, nJung, nJong)
-
-    # if (nCho == -1 and nJung != -1 and nJong != -1):
-    #     s = ''.join(map(chr, [nJung, nJong]))
-    # elif (nCho == -1 and nJung == -1 and nJong != -1):
-    #     s = ''.join(map(chr, [nJong]))
-    # elif (nCho == -1 and nJung == -1 and nJong == -1):
-    #     return ""
-    # elif (nCho != -1 and nJung == -1 and nJong != -1):
-    #     s = ''.join(map(chr, [nCho,  nJong]))
-    # elif (nCho != -1 and nJung == -1 and nJong == -1):
-    #     s = ''.join(map(chr, [nCho]))
-    # elif (nCho != -1 and nJung != -1 and nJong == -1):
-    #     s = ''.join(map(chr, [nCho, nJung]))
-    # elif (nCho == -1 and nJung != -1 and nJong == -1):
-    #     s = ''.join(map(chr, [nJung]))
-
-
-    # if (nCho == -1 and nJung != -1 and nJong != -1):
-    #     s = chr(nJung)+chr(nJong)
-    # elif (nCho == -1 and nJung == -1 and nJong != -1):
-    #     s = chr(nJong)
-    # elif (nCho == -1 and nJung == -1 and nJong == -1):
-    #     return ""
-    # elif (nCho != -1 and nJung == -1 and nJong != -1):
-    #     s = chr(nCho)+chr(nJong)
-    # elif (nCho != -1 and nJung == -1 and nJong == -1):
-    #     s = chr(nCho)
-    # elif (nCho != -1 and nJung != -1 and nJong == -1):
-    #     s = chr(nCho)+chr(nJung)
-    # elif (nCho == -1 and nJung != -1 and nJong == -1):
-    #     s = chr(nJung)
-    # else:
-    #     s = ''.join(map(chr, [nCho, nJung, nJong]))
     return chr(0xac00 + nCho * 21 * 28 + nJung * 28 + nJong + 1)
     
 
