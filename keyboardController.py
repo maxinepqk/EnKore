@@ -8,6 +8,9 @@ import time
 my_keyboard = Controller()
 word = []
 
+def letters(input):
+    return ''.join(filter(str.isalpha, input))
+
 def switch_input_source():
     my_keyboard.press(Key.ctrl)
     my_keyboard.press(Key.alt)
@@ -15,7 +18,7 @@ def switch_input_source():
     my_keyboard.release(Key.up)
     my_keyboard.release(Key.ctrl)
     my_keyboard.release(Key.alt)
-    time.sleep(.1)
+    time.sleep(.05)
 
 def delete_word(actual_word):
     my_keyboard.press(Key.left)
@@ -23,7 +26,7 @@ def delete_word(actual_word):
     for i in range(0, len(actual_word)):
         my_keyboard.press(Key.backspace)
         my_keyboard.release(Key.backspace)
-    time.sleep(.1)
+    time.sleep(.05)
 
 def check_word(actual_word):
     print(actual_word)
@@ -37,12 +40,12 @@ def check_word(actual_word):
             delete_word(actual_word) #deletes english word
             switch_input_source() #switches to korean keyboard
             my_keyboard.type(actual_word) #types out sequence
-            time.sleep(.1)
+            time.sleep(.05)
             my_keyboard.press(Key.right)
             my_keyboard.release(Key.right)
-            time.sleep(.1)
+            time.sleep(.05)
             switch_input_source() #switches back
-    time.sleep(.1)
+    time.sleep(.05)
     word.clear()
     actual_word = ""
     print("cleared")
@@ -57,7 +60,7 @@ def on_press(key):
 def on_release(key):
     print('{0} released'.format(key))
     if (key == keyboard.Key.space):
-        actual_word = ''.join(word)
+        actual_word = letters(''.join(word))
         #print(actual_word)
         check_word(actual_word)
     if (key == keyboard.Key.right):
