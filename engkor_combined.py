@@ -15,6 +15,8 @@ def engTypeToKor(src):
     if (len(src) == 0):
         return res
 
+    count = 0
+
     nCho = -1
     nJung = -1
     nJong = -1
@@ -25,13 +27,18 @@ def engTypeToKor(src):
             if (nCho != -1):
                 if (nJung != -1):
                     res += makeHangul(nCho, nJung, nJong)
+                    print(res)
                 else:
                     res += CHO_DATA[nCho]
+                    print(res)
             else:
                 if (nJung != -1):
                     res += JUNG_DATA[nJung]
+                    print(res)
+
                 elif (nJong != -1):
                     res += JONG_DATA.charAt(nJong)
+                    print(res)
 
             nCho = -1;
             nJung = -1
@@ -128,7 +135,7 @@ def engTypeToKor(src):
         else:
             if (nJong != -1):
 
-                newCho;
+                newCho = -1
                 if (nJong ==2):
                     nJong = 0
                     newCho = 9
@@ -199,32 +206,68 @@ def engTypeToKor(src):
                     res += JUNG_DATA[nJung]
                 nJung = -1
                 res += KOR_KEY[p]
-
-
-
-
-
-        if (nCho != -1):
-            if (nJung != -1):
-                res += makeHangul(nCho, nJung, nJong)
-            else:
-                res += CHO_DATA[nCho]
-        else:
-            if (nJung != -1):
-                res += JUNG_DATA[nJung]
-            else:
-                if (nJong != -1):
-                    res += JONG_DATA[nJong]
-
         i+=1
+        count += 1
+        print (nCho,nJung, nJong)
+        print(count, ":" , res)
+
+
+
+
+    if (nCho != -1):
+        if (nJung != -1):
+            res += makeHangul(nCho, nJung, nJong)
+        else:
+            res += CHO_DATA[nCho]
+    else:
+        if (nJung != -1):
+            res += JUNG_DATA[nJung]
+        else:
+            if (nJong != -1):
+                res += JONG_DATA[nJong]
+
+        
 
     return res; 
 
 
 
 def makeHangul(nCho, nJung, nJong):
-    s = ''.join(map(unichr, [nCho, nJung, nJong]))
-    return s
+    print(nCho, nJung, nJong)
+
+    # if (nCho == -1 and nJung != -1 and nJong != -1):
+    #     s = ''.join(map(chr, [nJung, nJong]))
+    # elif (nCho == -1 and nJung == -1 and nJong != -1):
+    #     s = ''.join(map(chr, [nJong]))
+    # elif (nCho == -1 and nJung == -1 and nJong == -1):
+    #     return ""
+    # elif (nCho != -1 and nJung == -1 and nJong != -1):
+    #     s = ''.join(map(chr, [nCho,  nJong]))
+    # elif (nCho != -1 and nJung == -1 and nJong == -1):
+    #     s = ''.join(map(chr, [nCho]))
+    # elif (nCho != -1 and nJung != -1 and nJong == -1):
+    #     s = ''.join(map(chr, [nCho, nJung]))
+    # elif (nCho == -1 and nJung != -1 and nJong == -1):
+    #     s = ''.join(map(chr, [nJung]))
+
+
+    # if (nCho == -1 and nJung != -1 and nJong != -1):
+    #     s = chr(nJung)+chr(nJong)
+    # elif (nCho == -1 and nJung == -1 and nJong != -1):
+    #     s = chr(nJong)
+    # elif (nCho == -1 and nJung == -1 and nJong == -1):
+    #     return ""
+    # elif (nCho != -1 and nJung == -1 and nJong != -1):
+    #     s = chr(nCho)+chr(nJong)
+    # elif (nCho != -1 and nJung == -1 and nJong == -1):
+    #     s = chr(nCho)
+    # elif (nCho != -1 and nJung != -1 and nJong == -1):
+    #     s = chr(nCho)+chr(nJung)
+    # elif (nCho == -1 and nJung != -1 and nJong == -1):
+    #     s = chr(nJung)
+    # else:
+    #     s = ''.join(map(chr, [nCho, nJung, nJong]))
+    return chr(0xac00 + nCho * 21 * 28 + nJung * 28 + nJong + 1)
     
 
 def korTypeToEng(src):

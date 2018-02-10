@@ -100,7 +100,7 @@ def dic(src_lang, dst_lang, phrase) :
   #print (phrase + '\n========\n' + lines)
   return True
 
-def converter(phrase) :
+def check_dictionary(phrase) :
   # if (len(sys.argv) < 4) :
     # print(usage)
     # return 1
