@@ -90,7 +90,7 @@ def dic(src_lang, dst_lang, phrase) :
   response = request_glosbe(src_lang, dst_lang, phrase)
   print(phrase) #phrase: string \xea\xxx
   phrase.decode('utf-8') #unicode
-  print(u'\u3042\u3044'.encode('utf-8')) 
+  print(u'\u3042'.encode('utf-8')) 
   js = json.loads(response)
   lines = extract_glosbe_response(js)
   if (lines == None) :

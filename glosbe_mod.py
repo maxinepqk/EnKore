@@ -79,12 +79,14 @@ def line_with_phrase_and_meaning(tuc_item) :
   return line
 
 def extract_glosbe_response(js) :
-  print(js)
+  #print(js)
+
   if (js['result'] != 'ok') : return None
   # lines = [line_with_phrase_and_meaning(i) for i in js['tuc'] if i.get('phrase')]
   lines = [line_with_phrase(i) for i in js['tuc'] if i.get('phrase')]
   if (len(lines) == 0) :
     return None
+
   return '\n'.join(lines).encode('utf-8').strip()
 
 def dic(src_lang, dst_lang, phrase) :
@@ -92,10 +94,10 @@ def dic(src_lang, dst_lang, phrase) :
   str_response = response.read().decode('utf-8')
   js = json.loads(str_response)
   #js = json.load((response).decode('utf-8'))
-  lines = extract_glosbe_response(json.dumps(js))
+  lines = extract_glosbe_response(js)
   if (lines == None) :
     return False
-  print (phrase + '\n========\n' + lines)
+  #print (phrase + '\n========\n' + lines)
   return True
 
 def converter(phrase) :
