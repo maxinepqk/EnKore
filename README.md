@@ -6,10 +6,10 @@ EnKore is a multilingual keyboard, supporting automatic keboard management when 
 Suppose you are talking to your Korean friend and you wanted to type "I'm in Pittsburgh" in Korean. 
 It is natural that you keep "Pittsburgh" as it is in English and everything else in Korean. Like ""
 To do this, you need to type "" Korean keyboard, switch to English keyboard, type "Pittsburgh", switch back to Korean keyboard and finally, type "" in English keyboard.
-Anyone who has been experiencing (constantly) the situation or typing in the wrong keyboard and ending up deleting and typing it again,would understand such fructration.
+Anyone who has experienced the situation of typing in the wrong keyboard and ending up deleting and typing it again would understand such frustration.
 
-Our project provides a solution by supporting a keyboard that automaticly types the words in your intended language.
-When you type a string in English keyboard and the string can be recognized as a valid Korean typing, it converts to Korean word right away.
+Our project provides a solution by supporting a keyboard that automatically types the words in your intended language.
+When you type a string in English keyboard and the string can be recognized as a valid Korean word, it converts to Korean word right away.
 
 Instruction
 -----------
