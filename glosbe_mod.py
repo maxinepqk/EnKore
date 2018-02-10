@@ -21,7 +21,8 @@ import sys
 import locale
 import datetime
 import urllib
-import urllib2
+import urllib.parse
+import urllib.request
 import json
 
 locale.setlocale(locale.LC_ALL, 'ko_KR.utf-8')
@@ -59,8 +60,8 @@ def request_glosbe(src_lang, dst_lang, phrase) :
       'format' : 'json',
       'phrase' : phrase
       }
-  query_url = urllib.urlencode(query_params)
-  response = urllib2.urlopen(glosbe_url + '?' + query_url)
+  query_url = urllib.parse.urlencode(query_params)
+  response = urllib.request.urlopen(glosbe_url + '?' + query_url)
   return response.read()
 
 
@@ -88,14 +89,15 @@ def extract_glosbe_response(js) :
 
 def dic(src_lang, dst_lang, phrase) :
   response = request_glosbe(src_lang, dst_lang, phrase)
-  js = json.loads(response)
+  str_response = response.readall().decode('utf-8')
+  js = jsons.loads(str_response)
   lines = extract_glosbe_response(js)
   if (lines == None) :
     return False
   print (phrase + '\n========\n' + lines)
   return True
 
-def main() :
+def converter(phrase) :
 
   # if (len(sys.argv) < 4) :
     # print(usage)
@@ -107,23 +109,20 @@ def main() :
   dst_lang = "kor"
 
   # phrase = ' '.join(sys.argv[3:])
-  phrase = "hello"
 
   try :
     engkor_output = dic(src_lang, dst_lang, phrase)
     koreng_output = dic(dst_lang, src_lang, phrase)
-    if (engkor_output):
-      output = engkor_output
-    elif (koreng_output):
-      output = koreng_output
-    else:
-      output = False
-  except Exception, e :
+    # if (engkor_output):
+    #   output = engkor_output
+    # elif (koreng_output):
+    #   output = koreng_output
+    # else:
+    #   output = False
+  except Exception as e :
     print(e)
-    return 2
-  print(output)
-  return 0
+    return (0, 0)
+  return (engkor_output, koreng_output)
 
-if (__name__ == '__main__') :
-  main()
-
+# if (__name__ == '__main__') :
+#   main()
